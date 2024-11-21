@@ -1,0 +1,17 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "mathwhiz_user",
+    "password": "your_password",
+    "database": "mathwhiz_db",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "migrations": ["dist/migrations/*{.ts,.js}"],
+    "migrationsTableName": "migrations_history",
+    "synchronize": false,
+    "logging": true,
+    "cli": {
+      "migrationsDir": "src/migrations",
+      "entitiesDir": "src/entities"
+    }
+  }

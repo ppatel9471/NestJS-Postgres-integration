@@ -7,13 +7,13 @@ import { UsersModule } from './modules/users/users.module';
 import { TopicsModule } from './modules/topics/topics.module';
 import { LearningModule } from './modules/learning/learning.module';
 import { ProgressModule } from './modules/progress/progress.module';
-import databaseConfig from './config/database.config';
+import { databaseConfig } from './config/database.config';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(databaseConfig),
     ConfigModule.forRoot({
-      isGlobal: true,
-      load: [databaseConfig],
+      isGlobal: true
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],

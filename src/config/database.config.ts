@@ -1,7 +1,9 @@
-// src/config/database.config.ts
-import { registerAs } from '@nestjs/config';
+import { DataSourceOptions } from 'typeorm';
+import * as dotenv from 'dotenv';
 
-export default registerAs('database', () => ({
+dotenv.config();
+
+export const databaseConfig: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT) || 5432,
@@ -9,6 +11,8 @@ export default registerAs('database', () => ({
   password: process.env.DB_PASSWORD || 'your_password',
   database: process.env.DB_NAME || 'mathwhiz_db',
   entities: ['dist/**/*.entity{.ts,.js}'],
-  synchronize: process.env.NODE_ENV !== 'production',
-}));
-
+  migrations: ['dist/migrations/*{.ts,.js}'],
+  migrationsTableName: 'migrations_history',
+  synchronize: false,
+  logging: process.env.NODE_ENV !== 'production',
+};
